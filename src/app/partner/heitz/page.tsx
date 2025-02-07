@@ -1,4 +1,5 @@
-import { ArrowLeft, Milk } from "lucide-react";
+"use client";
+import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import { dataPartnersPage } from "../../../utils/data";
 import { Separator } from "@/components/ui/separator";
@@ -8,7 +9,8 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { MeetupDialog } from "@/components/modal/meetup";
+import { useRouter } from "next/navigation";
 
 interface Logo {
   name: string;
@@ -29,13 +31,17 @@ interface PartnerCategory {
 }
 
 export default function Page() {
+  const router = useRouter();
   const heitz = dataPartnersPage
     .flatMap((category: PartnerCategory) => category.datas) // Récupère tous les items dans un seul tableau
     .find((item: PartnerItem) => item.title === "Heitz"); // Trouve "Heitz"
 
   return (
     <div className="content">
-      <div className="flex items-center mb-2">
+      <div
+        className="flex items-center mb-2 cursor-pointer"
+        onClick={() => router.back()}
+      >
         <ArrowLeft className="mr-2" />
         <p className="text-sm text-zinc-950">Api partenaires</p>
       </div>
@@ -57,47 +63,48 @@ export default function Page() {
       </div>
       <Separator className="my-6" />
       <Card>
-        <CardHeader className="flex-row">
-          <div className="flex gap-6 w-3/5">
+        <CardHeader className="sm:flex-row">
+          <div className="flex gap-6 w-full sm:w-3/5">
             <span>
-              <p className="uppercase text-zinc-500 text-xs">Website</p>
-              <p className="text-zinc-950 text-sm">heitz.com</p>
+              <p className="text-xs text-zinc-500 font-medium uppercase">
+                Website
+              </p>
+              <p className="text-sm text-zinc-950 ">heitz.com</p>
             </span>
             <span>
-              <p className="uppercase text-zinc-500 text-xs">Doc</p>
-              <p className="text-zinc-950 text-sm">Docs</p>
+              <p className="text-xs text-zinc-500 font-medium uppercase">Doc</p>
+              <p className="text-sm text-zinc-950 ">Docs</p>
             </span>
             <span>
-              <p className="uppercase text-zinc-500 text-xs">Build by</p>
-              <p className="text-zinc-950 text-sm">Lead</p>
+              <p className="text-xs text-zinc-500 font-medium uppercase">
+                Build by
+              </p>
+              <p className="text-sm text-zinc-950 ">Lead</p>
             </span>
           </div>
-          <div className="w-2/5" style={{ marginTop: "0px" }}>
-            <Button size={"sm"} className="float-right">
-              <Milk />
-              Prendre rendez-vous
-            </Button>
+          <div className="w-full sm:w-2/5" style={{ marginTop: "0px" }}>
+            <MeetupDialog />
           </div>
         </CardHeader>
-        <CardContent className="flex gap-2">
+        <CardContent className="flex flex-col sm:flex-row gap-2">
           <Image
             src="/img/first-img.jpeg"
             alt="neon"
             width={500}
             height={500}
-            className="w-1/2 rounded h-[185px] object-cover"
+            className="w-full sm:w-1/2 rounded h-[185px] object-cover"
           />
           <Image
             src="/img/second-img.jpeg"
             alt="neon"
             width={500}
             height={500}
-            className="w-1/2 rounded h-[185px] object-cover"
+            className="w-full sm:w-1/2 rounded h-[185px] object-cover"
           />
         </CardContent>
         <CardFooter className="flex-col items-start">
-          <p className="mb-1.5 text-zinc-950 text-sl">Résumé</p>
-          <p className="text-zinc-600 text-sm">
+          <p className="text-sl text-zinc-950 mb-1.5">Résumé</p>
+          <p className="text-sm text-zinc-600">
             Index pricing is straightforward. The page supports monthly and
             yearly plans, three different pricing tiers, and an additional
             enterprise solution for big corporations and large teams.

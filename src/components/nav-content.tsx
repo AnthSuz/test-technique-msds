@@ -1,4 +1,4 @@
-import { ChevronRight } from "lucide-react";
+import { ChevronUp } from "lucide-react";
 import {
   Collapsible,
   CollapsibleContent,
@@ -39,13 +39,13 @@ export function NavContent({
       <SidebarGroup className="pr-0">
         <SidebarGroupLabel
           asChild
-          className={`text-xs ${
+          className={`text-xs text-zinc-600 font-semibold${
             item.items && item.items[0].isActive ? "mb-2" : ""
-          } text-zinc-600 font-semibold pr-0`}
+          } sm:pr-0`}
         >
-          <CollapsibleTrigger className="pr-0">
+          <CollapsibleTrigger className="sm:pr-0">
             {item.title}
-            <ChevronRight className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
+            <ChevronUp className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
           </CollapsibleTrigger>
         </SidebarGroupLabel>
         <CollapsibleContent>
@@ -55,14 +55,19 @@ export function NavContent({
                 item.items.map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton
-                      className={`${
+                      className={`text-base ${
                         item.title === "SMS"
                           ? "bg-neutral-200 rounded-lg text-zinc-950"
                           : "text-zinc-600"
-                      } text-base font-medium`}
+                      } font-medium`}
                     >
                       {item.icon && (
-                        <Image src={`/img/${item.icon}.svg`} width={20} height={20} alt={item.icon} />
+                        <Image
+                          src={`/img/${item.icon}.svg`}
+                          width={20}
+                          height={20}
+                          alt={item.icon}
+                        />
                       )}
                       <a href={item.url} className="py-1.5">
                         {item.title}

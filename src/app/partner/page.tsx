@@ -10,12 +10,14 @@ export default function Page() {
 
   return (
     <div className="content">
-      <h1 className="text-2xl font-medium text-zinc-950">API partenaires</h1>
+      <h1 className="text-2xl text-zinc-950 font-medium">API partenaires</h1>
       <p className="text-sm text-zinc-500">Manage you automatisation</p>
       <Separator className="my-6" />
       {dataPartnersPage.map((item, index) => (
         <div key={`${item.title}-${index}`}>
-          <h6 className="mb-4 uppercase text-zinc-500 text-xs">{item.title}</h6>
+          <h6 className="text-xs text-zinc-500font-medium mb-4 uppercase">
+            {item.title}
+          </h6>
           <div className="flex flex-col sm:grid sm:grid-cols-3 gap-4 mb-6">
             {item.datas.map((data) => (
               <div
@@ -35,7 +37,9 @@ export default function Page() {
                       }`}
                     />
                   </div>
-                  <p className="text-sm text-zinc-950">{data.title}</p>
+                  <p className="text-sm text-zinc-950 font-medium">
+                    {data.title}
+                  </p>
                 </div>
                 <p className="text-sm text-zinc-600">{data.description}</p>
               </div>
