@@ -22,7 +22,7 @@ export default function RootLayout({
         <SidebarProvider>
           <AppSidebar />
           <main className="p-4 bg-[#EFEFEE] w-full h-screen">
-            <div className="bg-white rounded-xl shadow h-full">
+            <div className="bg-white rounded-xl shadow h-full overflow-scroll">
               <SidebarTrigger />
               {children}
             </div>
