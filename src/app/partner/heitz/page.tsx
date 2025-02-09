@@ -10,6 +10,7 @@ import {
 import { MeetupDialog } from "@/components/modal/meetup";
 import { PartnerCategory, PartnerItem } from "@/utils/type";
 import HeaderPartnerDetailPage from "@/components/header-partner-detail-page";
+import InfoSite from "@/components/info-site";
 
 export default function Page() {
   const heitz = dataPartnersPage
@@ -22,24 +23,7 @@ export default function Page() {
       <Separator className="my-6" />
       <Card>
         <CardHeader className="sm:flex-row">
-          <div className="flex gap-6 w-full sm:w-3/5">
-            <span>
-              <p className="text-xs text-zinc-500 font-medium uppercase">
-                Website
-              </p>
-              <p className="text-sm text-zinc-950 ">heitz.com</p>
-            </span>
-            <span>
-              <p className="text-xs text-zinc-500 font-medium uppercase">Doc</p>
-              <p className="text-sm text-zinc-950 ">Docs</p>
-            </span>
-            <span>
-              <p className="text-xs text-zinc-500 font-medium uppercase">
-                Build by
-              </p>
-              <p className="text-sm text-zinc-950 ">Lead</p>
-            </span>
-          </div>
+          <InfoSite webSite="heitz.com" doc="Docs" build="Lead" />
           <div className="w-full sm:w-2/5" style={{ marginTop: "0px" }}>
             <MeetupDialog />
           </div>
