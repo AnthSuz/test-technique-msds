@@ -1,5 +1,3 @@
-"use client";
-import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import { dataPartnersPage } from "../../../utils/data";
 import { Separator } from "@/components/ui/separator";
@@ -10,57 +8,17 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { MeetupDialog } from "@/components/modal/meetup";
-import { useRouter } from "next/navigation";
-
-interface Logo {
-  name: string;
-  width: number;
-  height: number;
-}
-
-interface PartnerItem {
-  title: string;
-  logo: Logo;
-  description: string;
-  link: string;
-}
-
-interface PartnerCategory {
-  title: string;
-  datas: PartnerItem[];
-}
+import { PartnerCategory, PartnerItem } from "@/utils/type";
+import HeaderPartnerDetailPage from "@/components/header-partner-detail-page";
 
 export default function Page() {
-  const router = useRouter();
   const heitz = dataPartnersPage
     .flatMap((category: PartnerCategory) => category.datas) // Récupère tous les items dans un seul tableau
     .find((item: PartnerItem) => item.title === "Heitz"); // Trouve "Heitz"
 
   return (
     <div className="content">
-      <div
-        className="flex items-center mb-2 cursor-pointer"
-        onClick={() => router.back()}
-      >
-        <ArrowLeft className="mr-2" />
-        <p className="text-sm text-zinc-950">Api partenaires</p>
-      </div>
-      <div className="flex items-center">
-        <div className="border shadow  min-w-10 max-w-10 min-h-10 max-h-10 mr-2 flex items-center justify-center rounded-md">
-          <Image
-            src={`/img/${heitz!.logo.name}.svg`}
-            alt={heitz!.logo.name}
-            width={heitz!.logo.width}
-            height={heitz!.logo.height}
-          />
-        </div>
-        <div>
-          <p className="text-xl text-zinc-950">Heitz</p>
-          <p className="text-sm text-zinc-600">
-            Fais plein de trucs trop bien avec cette API partenaire
-          </p>
-        </div>
-      </div>
+      <HeaderPartnerDetailPage partner={heitz} />
       <Separator className="my-6" />
       <Card>
         <CardHeader className="sm:flex-row">
